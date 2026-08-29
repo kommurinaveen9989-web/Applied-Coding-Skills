@@ -1,0 +1,20 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int j = 0;
+        for (int val : pushed) {
+            stack.push(val);
+            while (!stack.isEmpty() && stack.peek() == popped[j]) {
+                stack.pop();
+                j++;
+            }
+        }
+
+        return stack.isEmpty();
+    }
+}
+Input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+Output: true

@@ -1,0 +1,35 @@
+class MinStack {
+    private Node head;
+
+    public void push(int val) {
+        head = new Node(val, head == null ? val : Math.min(val, head.min), head);
+    }
+
+    public void pop() {
+        head = head.next;
+    }
+
+    public int top() {
+        return head.val;
+    }
+
+    public int getMin() {
+        return head.min;
+    }
+
+    private static class Node {
+        int val, min;
+        Node next;
+        Node(int val, int min, Node next) {
+            this.val = val;
+            this.min = min;
+            this.next = next;
+        }
+    }
+}
+Input
+["MinStack","push","push","push","getMin","pop","top","getMin"]
+[[],[-2],[0],[-3],[],[],[],[]]
+
+Output
+[null,null,null,null,-3,null,0,-2]S
